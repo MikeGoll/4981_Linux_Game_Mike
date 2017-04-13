@@ -1,10 +1,15 @@
 #ifndef SPRITETYPES_H
 #define SPRITETYPES_H
 
-/* DEVELOPER: Michael Goll
-** DESIGNER:  Michael Goll
-** DATE:      March 14, 2017
-*/
+/* HEADER: SpriteTypes.h
+ * REVISIONS: Isaac Morneau | Removed excess emun values | April 10, 2017
+ * DEVELOPER: Michael Goll
+ * DESIGNER:  Michael Goll
+ * DATE:      March 14, 2017
+ * NOTES:     Contains an enum value for every static sprite used in the game.
+ *            These sprites are ever loaded only once at startup and are always needed.
+ *            Only sprites and images used EVERY TIME the game starts up reside here.
+ */
 
 #include <cstdlib>
 

@@ -2,14 +2,49 @@
 #include "../view/Window.h"
 #include "../log/log.h"
 
-/**
- * DEVELOPER: Michael Goll
- * DESIGNER:  Michael Goll
- * DATE:      March 14, 2017
+/* HEADER: Renderer.cpp
+ * FUNCTIONS:
+ *      static Renderer& instance()
+ *      SDL_Texture *getTexture(int spriteType)
+ *      SDL_Renderer *getRenderer()
+ *      void setWindow(SDL_Window *win)
+ *      void loadSprites()
+ *      TTF_Font *loadFont(const std::string& fonts, const int size)
+ *      void createText(const TEXTURES index, TTF_Font *font, const std::string& text, const SDL_Color& colour)
+ *      int createTempText(TTF_Font *font, const std::string& text, const SDL_Color& colour)
+ *      int createTempTexture(const std::string& filePath)
+ *      void render(const SDL_Rect& dest, const TEXTURES spriteType, const double angle = 0.0,
+                const SDL_Point *center = nullptr, const SDL_RendererFlip flip = SDL_FLIP_NONE)
+ *       void render(const SDL_Rect& dest, const int spriteType, const double angle = 0.0,
+                const SDL_Point *center = nullptr, const SDL_RendererFlip flip = SDL_FLIP_NONE)
+ *       void render(const SDL_Rect& dest, const int spriteType, const SDL_Rect& clip, const double angle = 0.0,
+                const SDL_Point *center = nullptr, const SDL_RendererFlip flip = SDL_FLIP_NONE)
+ *       void render(const SDL_Rect& dest, const TEXTURES spriteType, const SDL_Rect& clip,
+                const double angle = 0.0, const SDL_Point *center = nullptr,
+                const SDL_RendererFlip flip = SDL_FLIP_NONE)
+ *       void render(const SDL_Rect& dest, const TEXTURES spriteType, const SDL_Rect& clip,
+                int w, int h)
+ *       void createTexture(const TEXTURES index, const std::string& filePath)
+ *       void createTexture(const int index, const std::string& filePath)
+ *       void setRenderer()
+ * REVISIONS: Isaac Morneau | Changed points to references | March 25, 2017
+ * DEVELOPERS: Michael Goll
+ *             Isaac Morneau
+ *             Terry Kang
+ * DESIGNER:   Michael Goll
+ * DATE:       March 14, 2017
+ * NOTES:      Handles all of the renderering done within the game.
  */
 
+//static renderer instance
 Renderer Renderer::sInstance;
 
+/**
+ * DEVELOPER: Michael Goll
+ * DESIGNER: Michael Goll
+ * DATE: March 14, 2017
+ * Releases resources used by the renderer.
+ */
 Renderer::~Renderer() {
     for (const auto& s : sprites) {
         if (s.second) {
@@ -154,6 +189,13 @@ void Renderer::createTexture(const int index, const std::string& filePath) {
     }
 }
 
+/**
+ * DEVELOPER: Michael Goll
+ * DESIGNER: Michael Goll
+ * DATE: March 14, 2017
+ * Creates a texture from a file and assigns it to the specified enum value.
+ * NOTES: Used only for static sprites that are always loaded (character sprites, ect)
+ */
 void Renderer::createTexture(const TEXTURES index, const std::string& filePath) {
     createTexture(static_cast<int>(index), filePath);
 }
